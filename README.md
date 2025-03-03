@@ -31,28 +31,33 @@ No Linux/Mac:
 bash
 Copy
 source venv/bin/activate
+```
+---
 
-2. Instalar as Dependências
+## 2. Instalar as Dependências
 Instale as dependências listadas no arquivo requirements.txt:
 
-bash
+```bash
 Copy
 pip install -r requirements.txt
-3. Configurar o Banco de Dados
+---
+```
+## 3. Configurar o Banco de Dados
 Crie um banco de dados MySQL chamado orcamentos.
 
 Execute o seguinte comando SQL para criar as tabelas necessárias em BD-ORCAMENTO
+---
 
-4. Executar o Projeto
+## 4. Executar o Projeto
 Com o ambiente virtual ativado e o banco de dados configurado, execute o servidor Flask:
 
-bash
+```bash
 Copy
 python app.py
 O servidor estará disponível em http://localhost:5000.
 
 
-
+```
 ---
 
 ### **Como Baixar o Arquivo `README.md`**
