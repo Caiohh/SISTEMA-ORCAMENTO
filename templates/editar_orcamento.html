@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Editar Orçamento{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Editar Orçamento</h1>
+    <form method="POST">
+        <div class="mb-3">
+            <label for="descricao" class="form-label">Descrição/Nome:</label>
+            <input type="text" class="form-control" name="descricao" value="{{ orcamento.descricao }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="custo_combustivel" class="form-label">Custo Combustível (por km):</label>
+            <input type="number" step="0.01" class="form-control" name="custo_combustivel"
+                value="{{ orcamento.custo_combustivel }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="distancia" class="form-label">Distância (km):</label>
+            <input type="number" step="0.01" class="form-control" name="distancia" value="{{ orcamento.distancia }}"
+                required>
+        </div>
+        <div class="mb-3">
+            <label for="preco_insumos" class="form-label">Preço Insumos:</label>
+            <input type="number" step="0.01" class="form-control" name="preco_insumos"
+                value="{{ orcamento.preco_insumos }}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
+</div>
+{% endblock %}

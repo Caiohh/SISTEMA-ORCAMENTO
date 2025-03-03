@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}Criar Orçamento{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Criar Orçamento</h1>
+
+    <!-- Exibir Valores Fixos Atuais -->
+    <div class="mb-4">
+        <h4>Valores Fixos Atuais</h4>
+        <p><strong>Custo Combustível:</strong> R$ {{ valores_fixos.custo_combustivel if valores_fixos else 'Não
+            configurado' }}</p>
+        <p><strong>Preço Insumos:</strong> R$ {{ valores_fixos.preco_insumos if valores_fixos else 'Não configurado' }}
+        </p>
+    </div>
+
+    <!-- Botão para Configurar Valores Fixos -->
+    <button type="button" class="btn btn-secondary mb-4" data-bs-toggle="modal"
+        data-bs-target="#configurarValoresFixos">
+        Configurar Valores Fixos
+    </button>
+
+    <!-- Modal para Configurar Valores Fixos -->
+    <div class="modal fade" id="configurarValoresFixos" tabindex="-1" aria-labelledby="configurarValoresFixosLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="configurarValoresFixosLabel">Configurar Valores Fixos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formValoresFixos" method="POST" action="{{ url_for('salvar_valores_fixos') }}">
+                        <div class="mb-3">
+                            <label for="custo_combustivel" class="form-label">Custo Médio de Combustível (por
+                                km):</label>
+                            <input type="number" step="0.01" class="form-control" id="custo_combustivel"
+                                name="custo_combustivel" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="preco_insumos" class="form-label">Preço dos Insumos:</label>
+                            <input type="number" step="0.01" class="form-control" id="preco_insumos"
+                                name="preco_insumos" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" form="formValoresFixos" class="btn btn-primary">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulário para Criar Orçamento -->
+    <form method="POST" action="{{ url_for('index') }}" onsubmit="formatarDistancia()">
+        <div class="mb-3">
+            <label for="descricao" class="form-label">Descrição do Orçamento:</label>
+            <input type="text" class="form-control" id="descricao" name="descricao" required>
+        </div>
+        <div class="mb-3">
+            <label for="distancia" class="form-label">Distância a ser percorrida (km):</label>
+            <input type="text" class="form-control" id="distancia" name="distancia" required
+                pattern="\d+([\.,]\d{1,3})?"
+                title="Insira um valor numérico com até 3 casas decimais (ex: 90.000 ou 90,000)">
+        </div>
+        <button type="submit" class="btn btn-primary">Criar Orçamento</button>
+    </form>
+</div>
+
+<!-- JavaScript para Substituir Vírgula por Ponto -->
+<script>
+    function formatarDistancia() {
+        // Seleciona o campo de distância
+        const campoDistancia = document.getElementById('distancia');
+
+        // Substitui vírgula por ponto
+        campoDistancia.value = campoDistancia.value.replace(',', '.');
+    }
+
+    // Validação ao digitar
+    document.getElementById('distancia').addEventListener('input', function (e) {
+        const valor = e.target.value;
+
+        // Verifica se o valor contém caracteres inválidos
+        if (!/^\d*([\.,]\d{0,3})?$/.test(valor)) {
+            e.target.setCustomValidity('Insira um valor numérico com até 3 casas decimais (ex: 90.000 ou 90,000)');
+        } else {
+            e.target.setCustomValidity('');
+        }
+    });
+</script>
+{% endblock %}
