@@ -1,18 +1,23 @@
-Sistema de Orçamentos
+# Sistema de Orçamentos
+
 Este é um sistema web simples para criação de orçamentos, desenvolvido com Python, Flask e MySQL. Ele permite configurar valores fixos (como custo de combustível e preço de insumos) e criar orçamentos com base em variáveis como distância percorrida.
 
-Pré-requisitos
+---
+
+## Pré-requisitos
+
 Antes de começar, certifique-se de que você tem os seguintes itens instalados:
 
-Python 3.8 ou superior
+- **Python 3.8 ou superior**
+- **MySQL Server** (ou um serviço de banco de dados MySQL)
 
-MySQL Server (ou um serviço de banco de dados MySQL)
+---
 
-1. Criar um Ambiente Virtual
+## 1. Criar um Ambiente Virtual
+
 Crie um ambiente virtual para isolar as dependências do projeto:
 
-bash
-Copy
+```bash
 python -m venv venv
 Ative o ambiente virtual:
 
@@ -48,5 +53,11 @@ O servidor estará disponível em http://localhost:5000.
 
 
 
-Licença
-Este projeto está licenciado sob a licença MIT. Consulte o arquivo LICENSE para mais detalhes.
+---
+
+### **Como Baixar o Arquivo `README.md`**
+
+1. Copie o conteúdo acima.
+2. Abra um editor de texto (como Notepad, VSCode, ou qualquer outro).
+3. Cole o conteúdo no editor.
+4. Salve o arquivo como `README.md`.
